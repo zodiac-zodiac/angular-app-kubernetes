@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: zodiaczodiacangularappkubernetes 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zodiaczodiacangularappkubernetes 
+    spec:
+      containers:
+        - name: zodiaczodiacangularappkubernetes 
+          image: eusdsolacr001.azurecr.io/zodiaczodiacangularappkubernetes
+          ports:
+          - containerPort: 80
