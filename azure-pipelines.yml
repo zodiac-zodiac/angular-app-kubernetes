@@ -62,7 +62,7 @@ stages:
           chmod +x ./roxctl
 
     - task: CmdLine@2
-      displayName: Scanning Image ($(vmImageName)) at ${CENTRAL}
+      displayName: Scanning image ($(vmImageName)) at ${CENTRAL}
       inputs:
         script: './roxctl image check --insecure-skip-tls-verify -e ${CENTRAL} --image $(containerRegistry)/$(imageRepository):$(tag)'
 
