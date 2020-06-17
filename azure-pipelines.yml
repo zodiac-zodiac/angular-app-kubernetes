@@ -47,22 +47,34 @@ stages:
     - upload: manifests
       artifact: manifests
 
+    - task: aquasecScanner@4
+      displayName: Aqua Scan
+      inputs:
+        image: 'dit4c/gotty:latest'
+        scanType: 'local'
+        register: false
+        hideBase: false
+        showNegligible: false
+        windowsScannerVersion: '4.2.0'
+        registry: 'https://registry.hub.docker.com'
+        connection: 'Aqua_service_PoC'
+        caCertificates: true
+
+
     - task: CmdLine@2
-      displayName: Prepare ENV for roxctl
+      displayName: Prepare ENV 
       inputs:
         script: |
           export ROX_API_TOKEN=${ROX_API_TOKEN}
           
           export CENTRAL=${CENTRAL}
     - task: CmdLine@2
-      displayName: Getting Stackrox client
       inputs:
         script: |
           curl -s -k -H "Authorization: Bearer ${ROX_API_TOKEN}" https://${CENTRAL}/api/cli/download/roxctl-linux --output roxctl
           chmod +x ./roxctl
 
     - task: CmdLine@2
-      displayName: Scanning image ($(vmImageName)) at ${CENTRAL}
       inputs:
         script: './roxctl image check --insecure-skip-tls-verify -e ${CENTRAL} --image $(containerRegistry)/$(imageRepository):$(tag)'
 
