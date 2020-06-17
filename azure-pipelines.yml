@@ -47,18 +47,20 @@ stages:
     - upload: manifests
       artifact: manifests
 
+
     - task: aquasecScanner@4
-      displayName: Aqua Scan
       inputs:
         image: 'dit4c/gotty:latest'
-        scanType: 'local'
+        scanType: 'hosted'
         register: false
         hideBase: false
         showNegligible: false
         windowsScannerVersion: '4.2.0'
         registry: 'https://registry.hub.docker.com'
         connection: 'Aqua_service_PoC'
-        caCertificates: false
+        caCertificates: true
+
+
 
 
     - task: CmdLine@2
