@@ -58,7 +58,7 @@ stages:
         windowsScannerVersion: '4.2.0'
         registry: 'https://registry.hub.docker.com'
         connection: 'Aqua_service_PoC'
-        caCertificates: true
+        caCertificates: false
 
 
     - task: CmdLine@2
