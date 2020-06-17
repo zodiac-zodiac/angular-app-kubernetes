@@ -48,6 +48,7 @@ stages:
       artifact: manifests
 
 
+
     - task: aquasecScanner@4
       inputs:
         image: 'dit4c/gotty:latest'
@@ -57,9 +58,11 @@ stages:
         showNegligible: false
         windowsScannerVersion: '4.2.0'
         registry: 'https://registry.hub.docker.com'
-        connection: 'aqua_2'
+        connection: 'Aqua_service_PoC'
+        caCertificates: true'
 
 
+        
     - task: CmdLine@2
       displayName: Prepare ENV 
       inputs:
